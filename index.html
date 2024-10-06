@@ -5,21 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Three Js Rotating Saturn Project</title>
     <style>
-      body {
-        margin: 0;
-      }
-      #planet-info {
-        padding: 20px;
-        background-color: #f4f4f4;
-        font-family: Arial, sans-serif;
-        max-width: 600px;
-        margin: 20px auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-      #planet-info h2 {
-        text-align: center;
-      }
+     body {
+  margin: 0;
+  overflow: hidden; /* Prevents scrollbar from showing */
+}
+
+#planet-info-overlay {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  color: white;
+  font-family: Arial, sans-serif;
+  border-radius: 10px;
+  max-width: 300px;
+  z-index: 1; /* Ensure it appears on top */
+}
+
+#planet-info-overlay h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
     </style>
     <script type="importmap">
       {
