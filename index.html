@@ -8,6 +8,18 @@
       body {
         margin: 0;
       }
+      #planet-info {
+        padding: 20px;
+        background-color: #f4f4f4;
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 20px auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      #planet-info h2 {
+        text-align: center;
+      }
     </style>
     <script type="importmap">
       {
@@ -20,5 +32,50 @@
   </head>
   <body>
     <script type="module" src="saturn.js"></script>
+
+    <!-- New div to display planet information -->
+    <div id="planet-info">
+      <h2>Saturn</h2>
+      <p id="planet-data">Loading planet data...</p>
+    </div>
+
+    <script>
+      const planetName = "Saturn";
+      const apiUrl = `https://planet-info-api.vercel.app/planet/${planetName}`;
+
+      // Function to fetch and display planet data
+      function fetchPlanetData() {
+        fetch(apiUrl)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            // Update the HTML content of the planet info div
+            const planetDataDiv = document.getElementById("planet-data");
+            planetDataDiv.innerHTML = `
+              <strong>Type:</strong> ${data.Type} <br>
+              <strong>Distance from Sun (AU):</strong> ${data.Distance_from_Sun_AU} <br>
+              <strong>Diameter (km):</strong> ${data.Diameter_km} <br>
+              <strong>Rotation Period (days):</strong> ${data.Rotation_Period_days} <br>
+              <strong>Moons:</strong> ${data.Moons} <br>
+              <strong>Rings:</strong> ${data.Rings} <br>
+              <strong>Temperature Range (C):</strong> ${data.Temperature_Range_C} <br>
+              <strong>Atmosphere Composition:</strong> ${data.Atmosphere_Composition.join(", ")} <br>
+              <strong>Surface Characteristics:</strong> ${data.Surface_Characteristics} <br>
+              <strong>Interesting Facts:</strong> ${data.Interesting_Facts}
+            `;
+          })
+          .catch(error => {
+            document.getElementById("planet-data").innerText = "Error fetching planet data!";
+            console.error("Error fetching planet data:", error);
+          });
+      }
+
+      // Call the function when the page loads
+      window.onload = fetchPlanetData;
+    </script>
   </body>
 </html>
