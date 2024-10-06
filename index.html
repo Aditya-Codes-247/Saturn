@@ -5,28 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Three Js Rotating Saturn Project</title>
     <style>
-     body {
+      body {
   margin: 0;
   overflow: hidden; /* Prevents scrollbar from showing */
 }
 
 #planet-info-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 10px;
-  left: 10px;
-  padding: 15px;
-  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+  bottom: 20px; /* Position it below the planet */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
   color: white;
   font-family: Arial, sans-serif;
   border-radius: 10px;
-  max-width: 300px;
-  z-index: 1; /* Ensure it appears on top */
+  max-width: 1200px;
+  z-index: 1;
+  flex-wrap: wrap; /* Allow the items to wrap in case of small screens */
 }
 
 #planet-info-overlay h2 {
+  flex-basis: 100%; /* Make the title span the full width */
   text-align: center;
   margin-bottom: 10px;
-  font-size: 1.2em;
+  font-size: 1.5em;
+}
+
+#planet-data {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Make the content flow horizontally in columns */
+}
+
+.planet-data-item {
+  flex-basis: 30%; /* Each item takes 30% of the width */
+  padding: 10px;
+  box-sizing: border-box;
 }
     </style>
     <script type="importmap">
